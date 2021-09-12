@@ -1,0 +1,62 @@
+<div class="component-wrapper">
+  <div class="date-picker-wrapper">
+    <button class="arrow-left" (click)="changeMonth(-1)">&nbsp;</button>
+    <div>{{ date | date: 'MM / yyyy' }}</div>
+    <button class="arrow-right" (click)="changeMonth(1)">&gt;</button>
+    </div>
+  <div>
+    <table>
+      <tr>
+        <td>Пн</td>
+        <td>Вт</td>
+        <td>Ср</td>
+        <td>Чт</td>
+        <td>Пт</td>
+        <td>Сб</td>
+        <td>Вс</td>
+      </tr>
+      <tr *ngFor="let week of weeksArray">
+        <td
+          [ngClass]="{
+            grey: day.color == 'grey',
+            black: day.color == 'black',
+            red: day.color == 'red'
+          }"
+          *ngFor="let day of getWeekArray(week)"
+        >
+          <div class="event-block" *ngIf="day.events">
+            <div
+              *ngFor="let event of getFirstTwoEventList(day.events)"
+              [ngStyle]="{ 'background-color': event.color }"
+              [ngClass]="{ 'event-filler': event.color == 'transparent' }"
+              class="event-line"
+            >
+              {{ event.title }}
+            </div>
+            <span *ngIf="day.events.length > 2" class="other-events"
+              >+{{ day.events.length - 2 }}</span
+            >
+          </div>
+          <div
+            class="calendar-date-title-wrapper"
+            [ngClass]="{
+              'no-events': !day.events,
+              'one-event': day.events && day.events.length == 1,
+              'two-events': day.events && day.events.length == 2
+            }"
+          >
+            <span
+              [ngClass]="{
+                'day-with-events': day.events,
+                'avarage-day': !day.events
+              }"
+              >{{ day.label }}</span
+            >
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <!-- <span id="tooltip" [ngStyle]="{'top': '400px', 'left': '300px'}" [ngClass]="{'visible': isTooltipVisible}">some title</span> -->
+  <button class="add-event-button">+</button>
+</div>

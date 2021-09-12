@@ -1,0 +1,149 @@
+$table-cell-width: 175px;
+$table-cell-height: 100px;
+
+.component-wrapper {
+    display: inline-block;
+    position: relative;
+    
+    .date-picker-wrapper {
+        display: flex;
+        margin: 10px 0 21px 19px;
+        
+        button {
+            width: 36px;
+            height: 25px;
+            &.arrow-left {
+                background: url('./../../../assets/arrow_left.png') center center no-repeat;
+            }
+    
+            &.arrow-right {
+                background: url('./../../../assets/arrow_right.png') center center no-repeat;
+            }
+        }
+        div {
+            margin: 3px 10px 3px 10px;
+            font-size: 16pt;
+        }
+    }
+    
+
+    .add-event-button {
+        position: absolute;
+        bottom: 3px;
+        right: -54px;
+        background-color: #ff5722;
+        color: white;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        border: 0;
+        font-size: 19pt;
+        cursor: pointer;
+    }
+}
+
+table {
+
+    tr {
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    td {
+        width: $table-cell-width;
+        
+        font-size: 20pt;
+        padding: 0;
+        vertical-align: top;
+        
+
+        .calendar-date-title-wrapper {
+            position: relative;
+            height: 50px;
+            border-right: 1px solid #e0e0e0;
+            
+
+            &.no-events {
+                height: $table-cell-height;
+            }
+
+            &.one-event {
+                height: calc(#{$table-cell-height} - 20px);
+            }
+
+            &.two-events {
+                height: calc(#{$table-cell-height} - 40px);
+            }
+        }
+
+        &.grey {
+            color: grey;
+        }
+
+        &.black {
+            color: black;
+        }
+
+        &.red {
+            color: white;
+            background-color: red;
+        }
+        .event-line {
+            height: 20px;
+            font-size: 11pt;
+            cursor: default;
+            padding-left: 9px;
+            text-align: center;
+            line-height: 20px;
+        }
+        .event-filler {
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .other-events {
+            font-size: 10pt;
+            display: block;
+        }
+
+        span.avarage-day {
+            display: block;
+            height: $table-cell-height;
+            text-align: center;
+            line-height: $table-cell-height;
+            border-right: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        span.day-with-events {
+            display: block;
+            font-size: 12pt;
+            text-align: left;
+            position: absolute;
+            bottom: 0;
+        }
+    }
+    
+    td:first-child {
+        div:first-child {
+            .event-line {
+                border-radius: 12% 0 0 12%;
+            }
+        }
+    }
+
+    td:last-child  {
+        div:first-child {
+            .event-line {
+                border-radius: 0 12% 12% 0;
+            }
+        }
+    }
+}
+
+#tooltip {
+    display: none;
+    position: absolute;
+    &.visible {
+        display: block;
+    }
+}
+
